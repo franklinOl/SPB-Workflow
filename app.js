@@ -6,7 +6,7 @@
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   /* Modo público (GitHub Pages): sin horas salvo ?horas=1 */
   const SHOW_H = !window.SPB_PUBLIC || /[?&]horas=1/.test(location.search);
-  const noH = s => SHOW_H ? (s || "") : String(s || "").replace(/\s*·\s*[\d.]+ h/g, "");
+  const noH = s => SHOW_H ? (s || "") : String(s || "").replace(/\s*·\s*[\d.]+ h/g, "");
 
   /* ---------- Tabs ---------- */
   function showTab(name) {
