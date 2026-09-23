@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal del Cliente SPB · Flujos de usuario</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><b>Portal del Cliente SPB</b><span>Flujos de usuario y mapa de la solución · OLSoftware · versión del 23 de septiembre de 2026</span></div>
+  <nav class="tabs">
+    <button data-tab="flujos" class="active">Flujos de usuario</button>
+    <button data-tab="solucion">Mapa de la solución</button>
+    <button data-tab="pantallas">Pantallas por perfil</button>
+    <button data-tab="estados">Estados y SLA</button>
+    <button data-tab="roles">Roles y bandejas</button>
+    <button data-tab="integraciones">Integraciones</button>
+  </nav>
+</header>
+
+<section id="tab-flujos" class="page active">
+  <div class="intro">
+    <p><b>Cómo usar esto.</b> Elige un flujo a la izquierda y avanza paso a paso. A la izquierda de cada paso ves una <b>pantalla simulada</b> del portal (con el shell del Portal Integral); a la derecha, <b>qué pasa por detrás</b>: quién actúa, qué hace el sistema, dónde entra la IA, qué integraciones se disparan, en qué estado queda el trámite, qué módulos de la WBS lo cubren y qué definió SPB en sus respuestas del 23 de septiembre de 2026. Los botones de <b>decisión</b> abren las ramas (NIT no encontrado, duplicados, pedir información, etc.).</p>
+  </div>
+  <div class="flows-layout">
+    <aside id="flow-list" class="flow-list"></aside>
+    <div id="player" class="player">
+      <div id="player-head" class="player-head"></div>
+      <div id="stepper" class="stepper"></div>
+      <div id="step-body" class="step-body"></div>
+      <div id="nav" class="nav"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tab-solucion" class="page">
+  <div class="intro">
+    <p><b>Una sola plataforma, dos productos.</b> El cliente ve un solo portal (el Portal Integral con nuevos módulos). Por dentro son dos productos desarrollados en paralelo por dos squads, sobre un núcleo transversal compartido (reglas, workflow, expediente, notificaciones, encuestas, indicadores), un servicio de IA y una capa de integración hacia los sistemas de SPB. Todo desplegado en el datacenter de SPB.</p>
+    <div class="legend"><span><i style="background:var(--navy)"></i>Registro</span><span><i style="background:var(--teal)"></i>PQRS</span><span><i style="background:#6a7b8c"></i>Transversal</span><span><i style="background:var(--ia)"></i>IA</span><span><i style="background:var(--int)"></i>Integración</span><span><i style="background:#999"></i>Externo / SPB</span><span><i style="background:var(--warn)"></i>Opcional</span></div>
+  </div>
+  <div class="arch">
+    <div id="arch-layers"></div>
+    <aside id="arch-panel" class="panel"></aside>
+  </div>
+</section>
+
+<section id="tab-pantallas" class="page">
+  <div class="intro"><p><b>Qué ve cada perfil.</b> El menú lateral cambia según el rol. Selecciona un perfil para ver sus menús, las páginas que tendría y qué módulo de la estimación las cubre.</p></div>
+  <div id="profiles" class="profiles"></div>
+  <div id="sitemap" class="sitemap"></div>
+</section>
+
+<section id="tab-estados" class="page">
+  <div class="intro"><p><b>Máquinas de estado.</b> Los estados por los que pasa un trámite de registro y un caso PQRS, con las transiciones que disparan las personas, la IA o el reloj del SLA. Amarillo: estados de espera; rojo: salidas negativas o escalamiento; verde: final feliz.</p></div>
+  <div id="states" class="states"></div>
+</section>
+
+<section id="tab-roles" class="page">
+  <div class="intro"><p><b>Quién puede hacer qué.</b> Roles previstos, cómo entran, qué bandejas ven y qué acciones tienen. Los roles internos se resuelven con AD/LDAP; los externos con el mecanismo actual del Portal Integral (usuarios y contraseñas en base de datos, sin proveedor de identidad; Keycloak como opcional O3).</p></div>
+  <div id="roles" class="roles"></div>
+</section>
+
+<section id="tab-integraciones" class="page">
+  <div class="intro"><p><b>Con qué se conecta el portal y cuándo.</b> Todos los servicios hacia SAP, N4, Billing, Portal Integral y PICAT los expone y mantiene SPB (PLCOLAB quedó descartado el 23 sep 2026); OLSoftware los consume con colas, reintentos y bitácora. El riesgo indica qué tan crítica es la dependencia para el cronograma.</p></div>
+  <div id="integ" class="seq"></div>
+</section>
+
+<script>window.SPB_PUBLIC = true; /* copia publicada en GitHub Pages: sin horas (agregar ?horas=1 para verlas) */</script>
+<script src="ui.js"></script>
+<script src="flows-registro.js"></script>
+<script src="flows-pqrs.js"></script>
+<script src="solution.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
